@@ -78,7 +78,15 @@ vector<int> solution(vector<vector<int>> users, vector<int> emoticons){
 
     // max 가입자, max 합 으로 최종 결과 구하기
     std::sort(total_list.begin(), total_list.end(),
-              [](const std::vector<int>& row1, const std::vector<int>& row2){return row1[1] > row2[1];});
+              [](const std::vector<int>& row1, const std::vector<int>& row2)
+              {
+
+                      if(row1[1] != row2[1]){
+                          return row1[1] > row2[1];
+                      }
+
+                    return row1[0] > row2[0];
+              });
 
     std::cout << "************** sorted total list ****************" << std::endl;
     for(auto outer : total_list){
@@ -93,14 +101,15 @@ vector<int> solution(vector<vector<int>> users, vector<int> emoticons){
 
 
 
-    return {total_list[0][0], total_list[0][1]};
+    return {total_list[0][1], total_list[0][0]};
 }
 
 int main() {
-    vector<vector<int>> user{{40, 2900}, {23, 10000}, {11, 5200}, {5, 5900}, {40, 3100}, {27, 9200}, {32, 6900}};
-    vector<int> emo{1300, 1500, 1600, 4900};
-    //vector<vector<int>> user{{40, 10000}, {25, 10000}};
-    //vector<int> emo{7000, 9000};
+    //vector<vector<int>> user{{40, 2900}, {23, 10000}, {11, 5200}, {5, 5900}, {40, 3100}, {27, 9200}, {32, 6900}};
+    //vector<int> emo{1300, 1500, 1600, 4900};
+    vector<vector<int>> user{{40, 10000}, {25, 10000}};
+    vector<int> emo{7000, 9000};
+
 
     auto ans = solution(user, emo);
 
