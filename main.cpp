@@ -51,8 +51,8 @@ vector<int> solution(vector<vector<int>> users, vector<int> emoticons){
                 if(user[0] <= item_list[i]){
                     double discount = (100 - item_list[i]);
                     double percent = discount/100;
-                    int count = emoticons[i] * percent;
-                    sub_total += count;
+                    double count = static_cast<double>(emoticons[i]) * percent;
+                    sub_total += static_cast<int>(count);
                 }
 
                 if(sub_total >= user[1]){
