@@ -44,21 +44,21 @@ vector<int> solution(vector<vector<int>> users, vector<int> emoticons){
     for(auto item_list : all_sale){
         int total = 0;
         int service = 0;
+
         for(auto user : users){
             // 한 사람이 구매
             int sub_total = 0;
             for(int i =0; i< item_list.size();i++){
                 if(user[0] <= item_list[i]){
-                    double discount = (100 - item_list[i]);
-                    double percent = discount/100;
-                    double count = static_cast<double>(emoticons[i]) * percent;
+                    int discount = (100 - item_list[i]);
+                    int count = emoticons[i] * discount / 100;
                     sub_total += static_cast<int>(count);
                 }
 
                 if(sub_total >= user[1]){
                     service++;
                     sub_total = 0;
-                    continue;
+                    break;
                 }
             }
             total += sub_total;
