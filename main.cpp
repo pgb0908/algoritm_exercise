@@ -58,6 +58,7 @@ vector<int> solution(vector<vector<int>> users, vector<int> emoticons){
                 if(sub_total >= user[1]){
                     service++;
                     sub_total = 0;
+                    break;
                 }
             }
             total += sub_total;
