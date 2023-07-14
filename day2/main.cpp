@@ -6,18 +6,19 @@
 
 std::vector<int> solution(int brown, int yellow){
 
-    // X * Y 조합 구하기 (X < Y)
+    // 노란색의 X*Y를 구하라
     std::vector<std::vector<int>> comb;
-    int sum = brown + yellow;
+    int sum = yellow + brown;
 
-    for(int i=2; i<= sum; i++){
-        if(sum % i != 0) continue;
-        int j = sum/i;
+    for(int i=2; i<= yellow; i++){
+        if(yellow % i != 0) continue;
+        int j = yellow/i;
         if(i > j) break;
 
         comb.push_back({i, j});
     }
 
+    // (X+2) * (Y+2) = 동형의 수인지 구하라
     for(auto outer : comb){
         for(auto inner : outer){
             std::cout << inner << " ";
@@ -26,17 +27,18 @@ std::vector<int> solution(int brown, int yellow){
     }
 
     // X-Y = 1 혹은 2 조합 구하기
-    int y, x;
+    int c_y;
     for(auto list : comb){
-        int val = list[1] - list[0];
-        if(val == 1 || val == 2){
-            y = list[1];
-            x = list[0];
+        int val = (list[1]+2) * (list[0]+2);
+        if(val == sum){
+            c_y = list[1];
             break;
         }
     }
 
-    return {y, x};
+    int c_x = sum/c_y;
+
+    return {c_x, c_y};
 }
 
 
@@ -45,8 +47,8 @@ int main() {
 
     int b,y;
 
-    b = 10;
-    y = 2;
+    b = 24;
+    y = 24;
 
     auto rtn = solution(b, y);
     std::cout << rtn[0] << ", " <<  rtn[1] << std::endl;
