@@ -3,4 +3,5 @@ project(algorithm_exercise)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(algorithm_exercise main.cpp)
+add_subdirectory(day1)
+add_subdirectory(day2)
