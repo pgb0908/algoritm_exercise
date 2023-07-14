@@ -10,7 +10,7 @@ std::vector<int> solution(int brown, int yellow){
     std::vector<std::vector<int>> comb;
     int sum = yellow + brown;
 
-    for(int i=2; i<= yellow; i++){
+    for(int i=1; i<= yellow; i++){
         if(yellow % i != 0) continue;
         int j = yellow/i;
         if(i > j) break;
@@ -28,15 +28,17 @@ std::vector<int> solution(int brown, int yellow){
 
     // X-Y = 1 혹은 2 조합 구하기
     int c_y;
+    int c_x;
     for(auto list : comb){
         int val = (list[1]+2) * (list[0]+2);
         if(val == sum){
-            c_y = list[1];
+            c_x = list[1]+2;
+            c_y = list[0]+2;
             break;
         }
     }
 
-    int c_x = sum/c_y;
+
 
     return {c_x, c_y};
 }
@@ -47,8 +49,8 @@ int main() {
 
     int b,y;
 
-    b = 24;
-    y = 24;
+    b = 8;
+    y = 1;
 
     auto rtn = solution(b, y);
     std::cout << rtn[0] << ", " <<  rtn[1] << std::endl;
