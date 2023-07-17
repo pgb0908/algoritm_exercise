@@ -3,55 +3,101 @@
 //
 #include <iostream>
 #include <vector>
-
-int solution(std::string word){
-    int rtn= 0;
-    char list[5] = {'a', 'e', 'e', 'o', 'u'};
-    int next_val = 1;
-    int word_size = word.size();
-
-    // 현재 자리수 = 자리수 + 4 * abs(word_size - 현재위치) +  next_val  <-- A기준
+#include <cmath>
 
 
-    if(word_size > 4){
-        // 맨 마지막 자리
-        auto five = word[4];
-        int index;
-        for(int i=0; i< word_size; i++){
-            if(five == list[i]){
-                index = i;
-            }
+int count = 0;
+char c[5] = {'A', 'E', 'I', 'O', 'U'};
+
+std::vector<char> final = {'I'};
+
+void testRecursive(std::vector<int> vector, int cnt){
+
+    if(vector.size() == cnt){
+
+        for(auto item : vector){
+            std::cout << item << " ";
         }
-        rtn = 5 + index;
+        std::cout << std::endl;
+
+        return;
     }
 
-    if(word_size > 3){
-        // 네번째
-        auto four = word[3];
-        int index = 0;
-        for(int i=0; i< word_size; i++){
-            if(four == list[i]){
-                index = i;
-            }
-        }
-        rtn = 4 + index * 5;
+    for(int i=0; i < 2; i++){
+        vector.push_back(i);
+        testRecursive(vector, cnt);
+        vector.pop_back();
     }
-
-
-
-
-
-
 
 }
 
+void testRecursive2(std::vector<char> vector){
+
+    for(auto item : vector){
+        std::cout << item << " ";
+    }
+    std::cout << std::endl;
+
+    if(vector == final){
+        // do
+        return;
+
+    }
+
+    for(int i=0; i< 5; i++) {
+        if(vector.size() < 5){
+            vector.push_back(c[i]);
+            testRecursive2(vector);
+        }
+    }
+}
+
+void DFS(std::string word, std::string str, int *rtn) {
+
+    std::cout << str <<  std::endl;
+
+    if(word == str){
+        *rtn = count;
+        return;
+
+    }
+
+    for(int i=0; i< 5; i++) {
+        if(str.length() < 5){
+            count++;
+            auto new_word = str+c[i];
+            DFS(word, new_word, rtn);
+        }
+    }
+}
+
+int solution(std::string word){
+    int rtn= 0;
+    DFS(word, "", &rtn);
+
+    return rtn;
+
+}
 
 int main() {
 
+    std::vector<char> test;
+    //testRecursive(test, 4);
+
+    //testRecursive2(test);
+
+
+
 
     std::string word1 = "AAAAE";
+    std::string word2 = "AAAE";
+    std::string word3 = "I";
+    std::string word4 = "EIO";
 
-    auto rtn = solution(word1);
-    std::cout <<rtn << std::endl;
+    auto rtn = solution(word3);
+    //std::cout <<rtn << std::endl;
+
+    //auto dd = (std::pow(5,4))*2 + (std::pow(5,3)) + (std::pow(5,2)) + (std::pow(5,1));
+    //std::cout << dd << std::endl;
     return 0;
 }
