@@ -22,16 +22,11 @@ int solution(int n, int k, std::vector<int> enemy) {
     std::vector<int> skips;
     for(auto item : k_vec){
         auto idx = std::find(enemy.begin(), enemy.end(), item)-enemy.begin();
-        enemy.at(idx) = -1;
+        enemy.at(idx) = 0;
     }
 
 
     for(int i : enemy){
-
-        if(i == -1){
-            answer++;
-            continue;
-        }
 
         n -= i;
         if(n <= 0){
