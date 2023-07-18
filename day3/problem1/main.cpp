@@ -37,7 +37,7 @@ int cmpVec(const std::vector<int>& one, const std::vector<int>& two){
 }
 
 
-std::vector<long long> solution(std::vector<long long> numbers) {
+std::vector<long long> solution_timeout(std::vector<long long> numbers) {
     auto max = static_cast<long long>(std::pow(10, 15));
     std::vector<long long> answer;
 
@@ -59,7 +59,32 @@ std::vector<long long> solution(std::vector<long long> numbers) {
         }
     }
 
+    return answer;
+}
 
+
+std::vector<long long> solution(std::vector<long long> numbers) {
+    std::vector<long long> answer;
+    for(const auto number : numbers){
+
+        if( (number %2) ==0){ // 짝수
+            // 짝수이면 맨끝자리 0, 1비트로 현재보다 더 큰 자리 가능
+            answer.push_back(number+1);
+
+        }else{ // 홀수
+            // 홀수이면 끝자리 1, 최대 2비트의 수정이 일어남
+            long long bit = 1;
+            while(true){
+                if((number & bit) == 0 ){
+                    break;
+                }
+                bit = bit *2;
+            }
+            bit /=2;
+            answer.push_back(number + bit);
+        }
+
+    }
 
     return answer;
 }
