@@ -73,12 +73,13 @@ std::vector<long long> solution(std::vector<long long> numbers) {
 
         }else{ // 홀수
             // 홀수이면 끝자리 1, 최대 2비트의 수정이 일어남
+            // 최초 0의 자리를 찾는게 포인트!
             long long bit = 1;
             while(true){
                 if((number & bit) == 0 ){
                     break;
                 }
-                bit = bit *2;
+                bit = bit <<= 1;
             }
             bit /=2;
             answer.push_back(number + bit);
@@ -100,6 +101,10 @@ int main() {
         std::cout << " ";
     }
     std::cout << std::endl;
+
+    long long bit = 1;
+    bit >>=1;
+    std::cout << bit  << std::endl;
 
     return 0;
 }
