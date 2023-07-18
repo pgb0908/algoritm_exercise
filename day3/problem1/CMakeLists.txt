@@ -1,0 +1,1 @@
+add_executable(day3_problem1 main.cpp)
