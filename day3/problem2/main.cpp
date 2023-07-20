@@ -8,23 +8,6 @@
 #include <algorithm>
 #include <queue>
 
-int solution1(int n, int k, std::vector<int> enemy) {
-    int answer = 0;
-    std::vector<int> copy = enemy;
-
-    for(int i : enemy){
-
-        n -= i;
-        if(n <= 0){
-            break;
-        }
-
-        answer++;
-    }
-
-    return answer;
-}
-
 int solution(int n, int k, std::vector<int> enemy) {
     int answer = 0;
 
@@ -49,6 +32,23 @@ int solution(int n, int k, std::vector<int> enemy) {
         if(n < 0){
             break;
         }
+        answer++;
+    }
+
+    return answer;
+}
+
+int solution1(int n, int k, std::vector<int> enemy) {
+    int answer = 0;
+    std::vector<int> copy = enemy;
+
+    for(int i : enemy){
+
+        n -= i;
+        if(n <= 0){
+            break;
+        }
+
         answer++;
     }
 
