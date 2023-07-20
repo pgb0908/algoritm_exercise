@@ -6,25 +6,11 @@
 #include <string>
 #include <iostream>
 #include <algorithm>
+#include <queue>
 
-int solution(int n, int k, std::vector<int> enemy) {
+int solution1(int n, int k, std::vector<int> enemy) {
     int answer = 0;
-
     std::vector<int> copy = enemy;
-
-    std::sort(copy.begin(), copy.end(), [](int a, int b){ return  a> b;});
-
-    std::vector<int> k_vec;
-    for(int i=0; i< k; i++){
-        k_vec.push_back(copy[i]);
-    }
-
-    std::vector<int> skips;
-    for(auto item : k_vec){
-        auto idx = std::find(enemy.begin(), enemy.end(), item)-enemy.begin();
-        enemy.at(idx) = 0;
-    }
-
 
     for(int i : enemy){
 
@@ -33,6 +19,36 @@ int solution(int n, int k, std::vector<int> enemy) {
             break;
         }
 
+        answer++;
+    }
+
+    return answer;
+}
+
+int solution(int n, int k, std::vector<int> enemy) {
+    int answer = 0;
+
+    std::priority_queue<int> pq;
+
+    for(int step : enemy){
+        pq.push(step);
+        n = n - step;
+
+        // priority_queue 사용할지 결정
+        if(n < 0){
+            if(k > 0){
+                auto big_one = pq.top();
+                pq.pop();
+
+                n += big_one;
+                k--;
+            }
+        }
+
+
+        if(n < 0){
+            break;
+        }
         answer++;
     }
 
@@ -48,9 +64,9 @@ int main() {
     k=3;
     enemy = {4, 2,4, 5, 3, 3, 1};
 
-    n = 2;
-    k=4;
-    enemy = {3,3,3,3};
+    //n = 2;
+    //k=4;
+    //enemy = {3,3,3,3};
 
     auto rtn = solution(n, k, enemy);
 
