@@ -1,0 +1,1 @@
+add_executable(day0724_pro2 main.cpp)
