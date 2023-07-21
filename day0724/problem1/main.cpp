@@ -12,6 +12,7 @@ int sumFromIdx(int idx, int size){
     while(size != 0){
         sum += idx;
         size--;
+        idx++;
     }
 
     return sum;
@@ -29,6 +30,7 @@ int solution(int numbers) {
             int sum = sumFromIdx(idx+1, size);
             if(sum > numbers) break;
             if(sum == numbers){
+                //std::cout << idx+1 << ", " << size << std::endl;
                 answer++;
             }
         }
