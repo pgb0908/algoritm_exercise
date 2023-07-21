@@ -27,6 +27,7 @@ int solution(int numbers) {
         for(int idx=0; idx <= bound; idx++){
 
             int sum = sumFromIdx(idx+1, size);
+            if(sum > numbers) break;
             if(sum == numbers){
                 answer++;
             }
