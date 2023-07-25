@@ -1,6 +1,7 @@
 //
 // Created by bong on 23. 7. 18.
 //
+// https://school.programmers.co.kr/learn/courses/30/lessons/12924
 
 #include <vector>
 #include <iostream>
