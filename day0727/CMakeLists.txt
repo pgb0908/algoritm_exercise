@@ -1,0 +1,2 @@
+add_subdirectory(solve1)
+add_subdirectory(solve2)

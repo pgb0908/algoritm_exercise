@@ -1,0 +1,1 @@
+add_executable(day0727_solve1 main.cpp)
