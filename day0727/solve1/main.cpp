@@ -16,6 +16,8 @@ std::string solution(int number) {
     while(number != 0){
         auto val = number % 3;
         if(val ==0){
+            // 012는 412로 표현할 시
+            // 20(3) --> 13(3) --> 14(124)와 동일하게 표현할 수 있음
             number = (number-1) /3;
             answer = std::to_string(4) + answer;
         }else{
