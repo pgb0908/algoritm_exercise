@@ -6,6 +6,8 @@
 #include <iostream>
 #include <algorithm>
 
+//https://school.programmers.co.kr/learn/courses/30/lessons/12899#qna
+
 char array[] = {'1', '2', '4'};
 
 

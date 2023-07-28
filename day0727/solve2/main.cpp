@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <unordered_map>
 
+//https://school.programmers.co.kr/learn/courses/30/lessons/72411
 std::unordered_map<std::string, int> hash[11];
 int maxCount[11];
 
