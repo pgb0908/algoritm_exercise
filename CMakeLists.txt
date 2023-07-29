@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.2)
 project(algorithm_exercise)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -8,3 +8,4 @@ add_subdirectory(day2)
 add_subdirectory(day3)
 add_subdirectory(day0724)
 add_subdirectory(day0727)
+add_subdirectory(day0731)
