@@ -1,1 +1,1 @@
-add_executable(day0731_sol1 main.cpp)
+add_executable(day0731_sol2 main.cpp)

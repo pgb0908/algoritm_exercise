@@ -6,7 +6,36 @@
 using namespace std;
 
 
+
 int solution(vector<int> scoville, int K) {
+    int answer = 0;
+    std::priority_queue<int, vector<int>, greater<>> pq(scoville.begin(), scoville.end());
+
+    while(true){
+        if(pq.size() < 2) break;
+        if(pq.top() >= K) break;
+
+        answer++;
+
+        auto one = pq.top();
+        pq.pop();
+        auto two = pq.top();
+        pq.pop();
+        pq.push(one + two*2);
+    }
+
+    if(pq.top() < K){
+        answer = -1;
+    }
+
+
+
+    return answer;
+}
+
+
+
+int solution2(vector<int> scoville, int K) {
     int answer = 0;
 
     std::sort(scoville.begin(), scoville.end());
