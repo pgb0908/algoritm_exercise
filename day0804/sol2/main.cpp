@@ -15,6 +15,33 @@ using namespace std;
 int largest = 999999;
 int MIN = largest;
 
+
+int solution(int x, int y, int n) {
+    int answer = 0;
+
+    vector<int> DP(1000001, 1000001);
+    DP[y] = 0;
+
+    for(int i = y; i > x; i--)
+    {
+        if (DP[i] != 1000001)
+        {
+            if(i % 3 == 0)
+                DP[i/3] = min(DP[i/3], DP[i] + 1);
+            if(i % 2 == 0)
+                DP[i/2] = min(DP[i/2], DP[i] + 1);
+            if(i - n > 0)
+                DP[i - n] = min(DP[i-n], DP[i] + 1);
+        }
+    }
+
+    if(DP[x] == 1000001)
+        DP[x] = -1;
+    answer = DP[x];
+    return answer;
+}
+
+
 void recursive(int x, int y, int n, int answer){
     if(x == y){
         if(answer < MIN){
@@ -32,7 +59,7 @@ void recursive(int x, int y, int n, int answer){
 }
 
 
-int solution(int x, int y, int n) {
+int solution2(int x, int y, int n) {
     int answer = 0;
 
     recursive(x, y, n, answer);
