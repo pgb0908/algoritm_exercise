@@ -7,8 +7,10 @@ void recursive(vector<int> numbers, vector<int> arr, int size, int target, int i
     if(size == arr.size()){
         int temp = 0;
         for(auto item : arr){
+            cout << item << " ";
             temp += item;
         }
+        cout << endl;
         if(temp == target) (*rtn)++;
 
         return;
