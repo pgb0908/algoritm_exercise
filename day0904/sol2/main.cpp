@@ -5,7 +5,7 @@
 #include <cmath>
 using namespace std;
 
-bool isPrime(int n) {
+bool isPrime(long long n) {
     if(n ==1) return false;
     for (int i = 2; i <= sqrt(n); i++) {//2~n의 제곱근까지
         if (n%i == 0) {//i가 n의 약수라면 소수가 아니므로 false return
