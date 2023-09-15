@@ -4,57 +4,27 @@
 #include <cmath>
 using namespace std;
 
-
-int getInt(double x) {
-    return floor(x)+1;
-}
-
-int getOutLine(double x) {
-    double temp = 0.;
-    int cnt = 0;
-    while(x > temp){
-        temp++;
-        cnt++;
-    }
-    return cnt;
-}
-
-int getSpotWithCircle(int radius) {
-    int total = 0;
-    for(int i=0; i<= radius; i++){
-        double x = sqrt(pow(radius, 2) - pow(i, 2));
-        total += getInt(x);
-    }
-
-    total *=4;
-    total -= radius*4;
-    total -= 3;
-
-    return total;
-}
-
-int getSpotWithoutCircle(int radius) {
-    int total = 0;
-    for(int i=0; i<= radius; i++){
-        double x = sqrt(pow(radius, 2) - pow(i, 2));
-        total += getOutLine(x);
-    }
-
-    total *=4;
-    total -= (radius-1)*4;
-    total -= 3;
-
-    return total;
-}
-
-
 long long solution(int r1, int r2) {
     long long answer = 0;
 
-    int outer = getSpotWithCircle(r2);
-    int inner = getSpotWithoutCircle(r1);
+    for(int i =1; i < r2; i++){
+        double outer = 0;
+        double inner = 0;
+        outer = sqrt((double)pow(r2, 2) - (double)pow(i, 2));
 
-    return outer - inner;
+        if(i < r1){
+            inner = sqrt((double)pow(r1, 2) - (double)pow(i, 2));
+        }else{
+            inner = 1;
+        }
+
+        outer = floor(outer);
+        inner = ceil(inner);
+
+        answer += (outer - inner+1);
+    }
+
+    return (answer+r2-r1+1)*4;
 }
 
 
