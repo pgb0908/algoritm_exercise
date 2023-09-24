@@ -1,0 +1,1 @@
+add_executable(0925_sol2 main.cpp)
