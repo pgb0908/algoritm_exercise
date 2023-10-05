@@ -1,69 +1,31 @@
-#include <string>
-#include <vector>
 #include <iostream>
+#include <vector>
 #include <algorithm>
-
-
 using namespace std;
 
-vector<int> getBin(int n){
-    vector<int> rtn;
-
-    while( n > 0){
-        auto d = n % 2;
-        rtn.push_back(d);
-        n = n / 2;
-    }
-
-    //reverse(rtn.begin(), rtn.end());
-
-    return rtn;
-}
-
-int getOneNum(int n){
-    int one = 0;
-
-    while( n > 0){
-        auto d = n % 2;
-        if(d == 1) one++;
-        n = n / 2;
-    }
-
-    //reverse(rtn.begin(), rtn.end());
-
-    return one;
-}
-
-int solution(int n) {
+int solution(vector<vector<int> > land)
+{
     int answer = 0;
-    int origin_from_n = getOneNum(n);
 
-
-    while(true){
-        n++;
-        if(origin_from_n == getOneNum(n)){
-            answer = n;
-            break;
-        }
+    for(int i=0; i<land.size()-1; i++){
+        land[i+1][0] += max(land[i][1], max(land[i][2], land[i][3]));
+        land[i+1][1] += max(land[i][0], max(land[i][2], land[i][3]));
+        land[i+1][2] += max(land[i][0], max(land[i][1], land[i][3]));
+        land[i+1][3] += max(land[i][0], max(land[i][1], land[i][2]));
     }
 
+    answer = *max_element(land[land.size()-1].begin(), land[land.size()-1].end());
 
     return answer;
 }
 
-
-
 int main() {
     /*
-        n	result
-        78	83
-        15	23
+        [[1,2,3,5],[5,6,7,8],[4,3,2,1]]  16
     */
 
-    int n;
-
-    n = 78;
-    auto rtn = solution(n);
+    vector<vector<int>> input = {{1,2,3,5}, {5, 6, 7, 8}, {4,3,2,1}};
+    auto rtn = solution(input);
 
     cout << rtn << " ";
 
