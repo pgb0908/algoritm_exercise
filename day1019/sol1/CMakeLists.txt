@@ -1,0 +1,1 @@
+add_executable(1019_sol1 main.cpp)
